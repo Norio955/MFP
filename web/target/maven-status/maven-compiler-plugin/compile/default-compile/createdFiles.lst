@@ -1,0 +1,4 @@
+sumdu\edu\ua\web\AppInit.class
+sumdu\edu\ua\db\CommentDao.class
+sumdu\edu\ua\web\CommentsServlet.class
+sumdu\edu\ua\db\Db.class

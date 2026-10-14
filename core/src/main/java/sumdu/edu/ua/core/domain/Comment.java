@@ -1,0 +1,19 @@
+package sumdu.edu.ua.core.domain;
+
+import java.time.Instant;
+
+public class Comment {
+    private final long id;
+    private final long bookId;
+    private final String author;
+    private final String text;
+    private final Instant createdAt;
+
+    public Comment(long id, long bookId, String author, String text, Instant createdAt) {
+        this.id = id;
+        this.bookId = bookId;
+        this.author = author;
+        this.text = text;
+        this.createdAt = createdAt;
+    }
+}
