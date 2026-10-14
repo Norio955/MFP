@@ -1,3 +1,4 @@
 sumdu\edu\ua\persistence\jdbc\Db.class
 sumdu\edu\ua\persistence\jdbc\JdbcBookRepository.class
+sumdu\edu\ua\persistence\jdbc\JdbcCommentRepository.class
 sumdu\edu\ua\persistence\jdbc\DbInit.class
