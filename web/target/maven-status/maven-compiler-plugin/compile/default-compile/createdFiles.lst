@@ -1,2 +1,5 @@
-sumdu\edu\ua\web\AppInit.class
+sumdu\edu\ua\web\BooksApiServlet.class
+sumdu\edu\ua\web\BooksServlet.class
 sumdu\edu\ua\web\CommentsServlet.class
+sumdu\edu\ua\config\AppInit.class
+sumdu\edu\ua\config\Beans.class

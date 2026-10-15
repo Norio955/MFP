@@ -1,6 +1,5 @@
 package sumdu.edu.ua.core.domain;
 
-
 import java.util.List;
 
 public class Page<T> {
@@ -12,5 +11,9 @@ public class Page<T> {
         this.items = items;
         this.request = request;
         this.total = total;
+    }
+
+    public List<T> getItems() {
+        return items;
     }
 }
