@@ -120,4 +120,28 @@ public class JdbcCommentRepository implements CommentRepositoryPort {
             throw new RuntimeException("DB delete error", e);
         }
     }
+
+    @Override
+    public java.util.Optional<Comment> findCommentById(long id) {
+        String sql = "select id, book_id, author, text, created_at from comments where id = ?";
+        try (var c = Db.get();
+             var ps = c.prepareStatement(sql)) {
+            ps.setLong(1, id);
+            try (var rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    Comment comment = new Comment(
+                            rs.getLong("id"),
+                            rs.getLong("book_id"), // або bookId, якщо передається ззовні/зберігається
+                            rs.getString("author"),
+                            rs.getString("text"),
+                            rs.getTimestamp("created_at").toInstant()
+                    );
+                    return java.util.Optional.of(comment);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("DB findById error", e);
+        }
+        return java.util.Optional.empty();
+    }
 }
