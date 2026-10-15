@@ -18,6 +18,6 @@ create table if not exists comments (
     );
 
 -- Додаємо тестові книги для каталогу:
--- insert into books (title, author, pub_year) values ('Кобзар', 'Тарас Шевченко', 1840);
--- insert into books (title, author, pub_year) values ('Тигролови', 'Іван Багряний', 1944);
--- insert into books (title, author, pub_year) values ('Місто', 'Валер''ян Підмогильний', 1928);
+insert into books (title, author, pub_year) values ('Кобзар', 'Тарас Шевченко', 1840);
+insert into books (title, author, pub_year) values ('Тигролови', 'Іван Багряний', 1944);
+insert into books (title, author, pub_year) values ('Місто', 'Валер''ян Підмогильний', 1928);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="sumdu.edu.ua.architecture.CoreArchitectureTest" time="1.077" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="sumdu.edu.ua.architecture.CoreArchitectureTest" time="0.788" tests="3" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -16,7 +16,7 @@
     <property name="user.country" value="RU"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Users\Norio\.jdks\openjdk-25.0.1\bin"/>
-    <property name="sun.java.command" value="C:\Users\Norio\AppData\Local\Temp\surefire22725426577441681\surefirebooter-20261015174229006_3.jar C:\Users\Norio\AppData\Local\Temp\surefire22725426577441681 2026-10-15T17-42-28_770-jvmRun1 surefire-20261015174229006_1tmp surefire_0-20261015174229006_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\Norio\AppData\Local\Temp\surefire2097889233872041185\surefirebooter-20261015194134386_3.jar C:\Users\Norio\AppData\Local\Temp\surefire2097889233872041185 2026-10-15T19-41-34_201-jvmRun1 surefire-20261015194134386_1tmp surefire_0-20261015194134386_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="F:\SumDU\MPF_Labs-main\core\target\test-classes;F:\SumDU\MPF_Labs-main\core\target\classes;C:\Users\Norio\.m2\repository\org\slf4j\slf4j-api\2.0.13\slf4j-api-2.0.13.jar;C:\Users\Norio\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\Norio\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\Norio\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Norio\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\Norio\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Norio\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\Norio\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\Norio\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;C:\Users\Norio\.m2\repository\com\tngtech\archunit\archunit-junit5\1.3.0\archunit-junit5-1.3.0.jar;C:\Users\Norio\.m2\repository\com\tngtech\archunit\archunit-junit5-api\1.3.0\archunit-junit5-api-1.3.0.jar;C:\Users\Norio\.m2\repository\com\tngtech\archunit\archunit\1.3.0\archunit-1.3.0.jar;C:\Users\Norio\.m2\repository\com\tngtech\archunit\archunit-junit5-engine\1.3.0\archunit-junit5-engine-1.3.0.jar;C:\Users\Norio\.m2\repository\com\tngtech\archunit\archunit-junit5-engine-api\1.3.0\archunit-junit5-engine-api-1.3.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -32,7 +32,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Norio\AppData\Local\Temp\surefire22725426577441681\surefirebooter-20261015174229006_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Norio\AppData\Local\Temp\surefire2097889233872041185\surefirebooter-20261015194134386_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.1+8-27"/>
@@ -65,12 +65,12 @@
     <property name="maven.repo.local" value="C:\Users\Norio\.m2\repository"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="coreClassesShouldNotUseStandardOutput" classname="sumdu.edu.ua.architecture.CoreArchitectureTest" time="0.87">
+  <testcase name="coreClassesShouldNotUseStandardOutput" classname="sumdu.edu.ua.architecture.CoreArchitectureTest" time="0.653">
     <system-err><![CDATA[SLF4J(W): No SLF4J providers were found.
 SLF4J(W): Defaulting to no-operation (NOP) logger implementation
 SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
 ]]></system-err>
   </testcase>
-  <testcase name="coreShouldNotDependOnWebOrPersistence" classname="sumdu.edu.ua.architecture.CoreArchitectureTest" time="0.111"/>
-  <testcase name="coreClassesShouldResideInCorrectPackage" classname="sumdu.edu.ua.architecture.CoreArchitectureTest" time="0.052"/>
+  <testcase name="coreShouldNotDependOnWebOrPersistence" classname="sumdu.edu.ua.architecture.CoreArchitectureTest" time="0.066"/>
+  <testcase name="coreClassesShouldResideInCorrectPackage" classname="sumdu.edu.ua.architecture.CoreArchitectureTest" time="0.035"/>
 </testsuite>

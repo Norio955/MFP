@@ -25,11 +25,11 @@
     <c:forEach var="c" items="${comments}">
         <li>
             <b>${c.author}:</b> ${c.text} <i>(${c.createdAt})</i>
-            <!-- форма видалення -->
+            <!-- Форма видалення з параметром action=delete -->
             <form method="post" action="${pageContext.request.contextPath}/comments" style="display:inline">
+                <input type="hidden" name="action" value="delete">
                 <input type="hidden" name="bookId" value="${book.id}">
                 <input type="hidden" name="commentId" value="${c.id}">
-                <input type="hidden" name="_method" value="delete"> <!-- хак -->
                 <button type="submit">Видалити</button>
             </form>
         </li>

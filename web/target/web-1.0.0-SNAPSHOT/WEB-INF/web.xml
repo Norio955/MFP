@@ -37,4 +37,13 @@
         <url-pattern>/comments/*</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>BookDetailsServlet</servlet-name>
+        <servlet-class>sumdu.edu.ua.web.BookDetailsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BookDetailsServlet</servlet-name>
+        <url-pattern>/book</url-pattern>
+    </servlet-mapping>
+
 </web-app>
