@@ -17,7 +17,7 @@
     <c:forEach var="book" items="${books}">
         <li>
             <a href="${pageContext.request.contextPath}/comments?bookId=${book.id}">
-                    ${book.title} — ${book.author} (${book.pubYear})
+                    ${book.title} - ${book.author} (${book.pubYear})
             </a>
         </li>
     </c:forEach>
