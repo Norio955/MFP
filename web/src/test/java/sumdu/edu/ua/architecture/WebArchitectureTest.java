@@ -1,36 +1,39 @@
 package sumdu.edu.ua.architecture;
 
+import com.tngtech.archunit.core.domain.JavaClasses;
+import com.tngtech.archunit.core.importer.ClassFileImporter;
 import org.junit.jupiter.api.Test;
-import sumdu.edu.ua.web.BooksServlet;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
 
 public class WebArchitectureTest {
 
     @Test
-    void webModuleClassesShouldExist() {
-        // Перевіряємо, що основні класи вебмодуля успішно завантажуються класлоадером
-        boolean classExists = true;
-        try {
-            Class.forName("sumdu.edu.ua.web.BooksServlet");
-        } catch (ClassNotFoundException e) {
-            classExists = false;
-        }
-        assertTrue(classExists, "Web classes should be available on classpath");
+    void webShouldNotDependOnPersistenceDirectly() {
+        JavaClasses imported = new ClassFileImporter()
+                .importPackages("sumdu.edu.ua");
+
+        noClasses()
+                .that().resideInAPackage("..web..")
+                .should().dependOnClassesThat()
+                .resideInAPackage("..persistence..")
+                .check(imported);
     }
 
     @Test
-    void servletNamingConventionTest() {
-        // Перевірка конвенції іменування класів контролерів/сервлетів
-        String sampleClassName = "BooksServlet";
-        assertTrue(sampleClassName.endsWith("Servlet"), "Web controllers should end with 'Servlet'");
+    void servletsShouldResideInWebPackage() {
+        classes()
+                .that().haveSimpleNameEndingWith("Servlet")
+                .should().resideInAPackage("..web..")
+                .check(new ClassFileImporter().importPackages("sumdu.edu.ua"));
     }
 
     @Test
-    void simpleAssertionTest() {
-        // Базова перевірка для виконання вимоги лабораторної щодо кількості тестів
-        String layerName = "web";
-        assertNotNull(layerName, "Layer name should not be null");
+    void repositoriesShouldResideInPersistencePackage() {
+        classes()
+                .that().haveSimpleNameEndingWith("Repository")
+                .should().resideInAPackage("..persistence..")
+                .check(new ClassFileImporter().importPackages("sumdu.edu.ua"));
     }
 }
