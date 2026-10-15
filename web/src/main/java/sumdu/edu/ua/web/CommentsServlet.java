@@ -53,6 +53,7 @@ public class CommentsServlet extends HttpServlet {
             String commentIdParam = req.getParameter("commentId");
 
             if (bookIdParam == null || commentIdParam == null) {
+                log.warn("Validation failed: missing bookId or commentId for deletion");
                 resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "bookId & commentId required");
                 return;
             }
@@ -63,6 +64,9 @@ public class CommentsServlet extends HttpServlet {
 
                 // Викликаємо сервіс з бізнес-правилом 24 годин
                 commentService.deleteComment(bookId, commentId);
+
+                // INFO лог при успішному видаленні з ключовими полями
+                log.info("Successfully deleted comment with id: {} for bookId: {}", commentId, bookId);
 
                 // Після успішного видалення оновлюємо сторінку книги
                 resp.sendRedirect(req.getContextPath() + "/book?id=" + bookId);
@@ -89,17 +93,23 @@ public class CommentsServlet extends HttpServlet {
         String text   = req.getParameter("text");
 
         if (bookIdParam == null || author == null || author.isBlank() || text == null || text.isBlank()) {
+            log.warn("Validation failed: missing bookId, author or text for comment creation");
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "bookId, author & text required");
             return;
         }
         if (author.length() > 64 || text.length() > 1000) {
+            log.warn("Validation failed: author or text exceeds maximum length");
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "too long");
             return;
         }
 
         try {
             long bookId = Long.parseLong(bookIdParam);
-            commentRepository.add(bookId, author.trim(), text.trim());
+            String trimmedAuthor = author.trim();
+            commentRepository.add(bookId, trimmedAuthor, text.trim());
+
+            // INFO лог при успішному створенні з ключовими полями
+            log.info("Successfully created comment for bookId: {}, author: '{}'", bookId, trimmedAuthor);
 
             // Після додавання також повертаємо користувача на сторінку книги
             resp.sendRedirect(req.getContextPath() + "/book?id=" + bookId);
@@ -109,13 +119,14 @@ public class CommentsServlet extends HttpServlet {
         }
     }
 
-    // Додаємо метод DELETE з перевіркою бізнес-правила 24 годин через CommentService
+    // Підтримка прямого методу DELETE за потреби
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String bookIdParam = req.getParameter("bookId");
         String commentIdParam = req.getParameter("commentId");
 
         if (bookIdParam == null || commentIdParam == null) {
+            log.warn("Validation failed: missing bookId or commentId in doDelete");
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "bookId & commentId required");
             return;
         }
@@ -126,14 +137,15 @@ public class CommentsServlet extends HttpServlet {
 
             // Викликаємо сервіс, який перевіряє правило 24 годин
             commentService.deleteComment(bookId, commentId);
+            log.info("Successfully deleted comment via DELETE method with id: {} for bookId: {}", commentId, bookId);
             resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
 
         } catch (IllegalArgumentException e) {
             log.warn("Comment not found: {}", e.getMessage());
             resp.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
         } catch (IllegalStateException e) {
-            log.warn("Deletion restriction violated: {}", e.getMessage());
-            resp.sendError(HttpServletResponse.SC_CONFLICT, e.getMessage()); // 409 Conflict для правила 24 годин
+            log.warn("Deletion restriction violated (24h rule): {}", e.getMessage());
+            resp.sendError(HttpServletResponse.SC_CONFLICT, e.getMessage()); // 409 Conflict
         } catch (Exception e) {
             log.error("Error while DELETE /comments", e);
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Server error");
