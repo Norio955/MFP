@@ -25,7 +25,6 @@
     </properties>
 
     <dependencies>
-        <!-- залежимо від core та persistence -->
         <dependency>
             <groupId>sumdu.edu.ua</groupId>
             <artifactId>core</artifactId>
@@ -44,7 +43,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- JSTL для JSP сторінок -->
         <dependency>
             <groupId>jakarta.servlet.jsp.jstl</groupId>
             <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
@@ -62,7 +60,6 @@
             <version>${jackson.version}</version>
         </dependency>
 
-        <!-- логування -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -72,6 +69,17 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.tngtech.archunit</groupId>
+            <artifactId>archunit-junit5</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
