@@ -16,4 +16,24 @@ public class Comment {
         this.text = text;
         this.createdAt = createdAt;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public long getBookId() {
+        return bookId;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
 }
