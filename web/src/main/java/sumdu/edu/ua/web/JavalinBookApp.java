@@ -20,7 +20,7 @@ public class JavalinBookApp {
         // 1. Ініціалізація бази даних та створення таблиць через schema.sql
         DbInit.init();
 
-        // 2. Створення застосунку Javalin з підтримкою статичних файлів (Крок 7)
+        // 2. Створення застосунку Javalin зі статичними файлами (Крок 7)
         var app = Javalin.create(config -> {
             config.staticFiles.add("/public", Location.CLASSPATH);
         });

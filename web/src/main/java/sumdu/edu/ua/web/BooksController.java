@@ -1,11 +1,9 @@
 package sumdu.edu.ua.web;
 
-import sumdu.edu.ua.core.port.CatalogRepositoryPort;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 import sumdu.edu.ua.core.port.CatalogRepositoryPort;
 import sumdu.edu.ua.core.domain.PageRequest;
-
 
 public class BooksController {
 
@@ -16,12 +14,14 @@ public class BooksController {
     }
 
     public void registerRoutes(Javalin app) {
+        // Тільки GET маршрути для книг
         app.get("/api/books", this::getBooks);
         app.get("/api/books/{id}", this::getBook);
     }
 
     private void getBooks(Context ctx) {
-        var books = bookRepo.search("", new PageRequest(0, 20)).getItems();        ctx.json(books);
+        var books = bookRepo.search("", new PageRequest(0, 20)).getItems();
+        ctx.json(books);
     }
 
     private void getBook(Context ctx) {
