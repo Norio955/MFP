@@ -6,6 +6,10 @@ public class Book {
     private String author;
     private int pubYear;
 
+    // Конструктор за замовчуванням обов'язковий для Jackson (десеріалізації JSON)
+    public Book() {
+    }
+
     public Book(long id, String title, String author, int pubYear) {
         this.id = id;
         this.title = title;
@@ -27,5 +31,21 @@ public class Book {
 
     public int getPubYear() {
         return pubYear;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setPubYear(int pubYear) {
+        this.pubYear = pubYear;
     }
 }
