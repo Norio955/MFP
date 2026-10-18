@@ -1,9 +1,6 @@
-F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\config\AppInit.java
-F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\config\Beans.java
 F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\AppInit.java
-F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\BookDetailsServlet.java
-F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\BooksApiServlet.java
-F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\BooksServlet.java
+F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\BooksController.java
 F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\CommentRequest.java
-F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\CommentsServlet.java
-F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\ServletConfig.java
+F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\CommentsController.java
+F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\LanguageConfig.java
+F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\WebConfig.java
