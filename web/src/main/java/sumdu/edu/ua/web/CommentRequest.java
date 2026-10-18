@@ -1,4 +1,3 @@
 package sumdu.edu.ua.web;
 
-public class CommentRequest {
-}
+public record CommentRequest(long bookId, String author, String text) {}

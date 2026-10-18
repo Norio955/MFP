@@ -7,8 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sumdu.edu.ua.config.Beans;
 import sumdu.edu.ua.core.domain.PageRequest;
+import sumdu.edu.ua.core.port.CatalogRepositoryPort;
 import sumdu.edu.ua.core.port.CommentRepositoryPort;
 import sumdu.edu.ua.core.service.CommentService;
 
@@ -19,9 +19,17 @@ public class CommentsServlet extends HttpServlet {
 
     private static final Logger log = LoggerFactory.getLogger(CommentsServlet.class);
 
-    private final CommentRepositoryPort commentRepository = Beans.getCommentRepo(); // Используем Beans фабрику
-    private final CommentService commentService = new CommentService(commentRepository);
+    private final CatalogRepositoryPort bookRepo;
+    private final CommentRepositoryPort commentRepository;
+    private final CommentService commentService;
     private final ObjectMapper om = new ObjectMapper();
+
+    // Конструктор для Spring DI (отримує репозиторії автоматично)
+    public CommentsServlet(CatalogRepositoryPort bookRepo, CommentRepositoryPort commentRepository) {
+        this.bookRepo = bookRepo;
+        this.commentRepository = commentRepository;
+        this.commentService = new CommentService(commentRepository);
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -46,7 +54,6 @@ public class CommentsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.setCharacterEncoding("UTF-8");
 
-        // Перевіряємо, чи це запит на видалення з JSP-форми через POST
         String action = req.getParameter("action");
         if ("delete".equals(action)) {
             String bookIdParam = req.getParameter("bookId");
@@ -62,13 +69,9 @@ public class CommentsServlet extends HttpServlet {
                 long bookId = Long.parseLong(bookIdParam);
                 long commentId = Long.parseLong(commentIdParam);
 
-                // Викликаємо сервіс з бізнес-правилом 24 годин
                 commentService.deleteComment(bookId, commentId);
-
-                // INFO лог при успішному видаленні з ключовими полями
                 log.info("Successfully deleted comment with id: {} for bookId: {}", commentId, bookId);
 
-                // Після успішного видалення оновлюємо сторінку книги
                 resp.sendRedirect(req.getContextPath() + "/book?id=" + bookId);
                 return;
 
@@ -78,7 +81,7 @@ public class CommentsServlet extends HttpServlet {
                 return;
             } catch (IllegalStateException e) {
                 log.warn("Deletion restriction violated (24h rule): {}", e.getMessage());
-                resp.sendError(HttpServletResponse.SC_CONFLICT, e.getMessage()); // 409 Conflict
+                resp.sendError(HttpServletResponse.SC_CONFLICT, e.getMessage());
                 return;
             } catch (Exception e) {
                 log.error("Error while deleting comment", e);
@@ -87,7 +90,6 @@ public class CommentsServlet extends HttpServlet {
             }
         }
 
-        // --- Стандартна логіка додавання коментаря ---
         String bookIdParam = req.getParameter("bookId");
         String author = req.getParameter("author");
         String text   = req.getParameter("text");
@@ -108,10 +110,7 @@ public class CommentsServlet extends HttpServlet {
             String trimmedAuthor = author.trim();
             commentRepository.add(bookId, trimmedAuthor, text.trim());
 
-            // INFO лог при успішному створенні з ключовими полями
             log.info("Successfully created comment for bookId: {}, author: '{}'", bookId, trimmedAuthor);
-
-            // Після додавання також повертаємо користувача на сторінку книги
             resp.sendRedirect(req.getContextPath() + "/book?id=" + bookId);
         } catch (Exception e) {
             log.error("DB error while POST /comments", e);
@@ -119,7 +118,6 @@ public class CommentsServlet extends HttpServlet {
         }
     }
 
-    // Підтримка прямого методу DELETE за потреби
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String bookIdParam = req.getParameter("bookId");
@@ -135,7 +133,6 @@ public class CommentsServlet extends HttpServlet {
             long bookId = Long.parseLong(bookIdParam);
             long commentId = Long.parseLong(commentIdParam);
 
-            // Викликаємо сервіс, який перевіряє правило 24 годин
             commentService.deleteComment(bookId, commentId);
             log.info("Successfully deleted comment via DELETE method with id: {} for bookId: {}", commentId, bookId);
             resp.setStatus(HttpServletResponse.SC_NO_CONTENT);
@@ -145,7 +142,7 @@ public class CommentsServlet extends HttpServlet {
             resp.sendError(HttpServletResponse.SC_NOT_FOUND, e.getMessage());
         } catch (IllegalStateException e) {
             log.warn("Deletion restriction violated (24h rule): {}", e.getMessage());
-            resp.sendError(HttpServletResponse.SC_CONFLICT, e.getMessage()); // 409 Conflict
+            resp.sendError(HttpServletResponse.SC_CONFLICT, e.getMessage());
         } catch (Exception e) {
             log.error("Error while DELETE /comments", e);
             resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Server error");

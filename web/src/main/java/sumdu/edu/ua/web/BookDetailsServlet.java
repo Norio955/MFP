@@ -4,7 +4,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import sumdu.edu.ua.config.Beans;
 import sumdu.edu.ua.core.domain.Book;
 import sumdu.edu.ua.core.domain.PageRequest;
 import sumdu.edu.ua.core.port.CatalogRepositoryPort;
@@ -14,8 +13,14 @@ import java.io.IOException;
 
 public class BookDetailsServlet extends HttpServlet {
 
-    private final CatalogRepositoryPort bookRepo = Beans.getBookRepo();
-    private final CommentRepositoryPort commentRepo = Beans.getCommentRepo();
+    private final CatalogRepositoryPort bookRepo;
+    private final CommentRepositoryPort commentRepo;
+
+    // Конструктор для Spring DI (отримує репозиторії автоматично з контейнера)
+    public BookDetailsServlet(CatalogRepositoryPort bookRepo, CommentRepositoryPort commentRepo) {
+        this.bookRepo = bookRepo;
+        this.commentRepo = commentRepo;
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

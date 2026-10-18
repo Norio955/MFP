@@ -1,0 +1,4 @@
+2026-10-16 12:36:03.355280+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Таблица "BOOKS" не найдена
+Table "BOOKS" not found; SQL statement:
+select id, title, author, pub_year from books where 1=1 order by id desc limit ? offset ? [42102-224]
