@@ -1,0 +1,12 @@
+2026-10-21 23:42:20.171787+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT * FROM BOOKS COMMENTS [*]USERS COMMENTS BOOKS"
+Syntax error in SQL statement "SELECT * FROM BOOKS COMMENTS [*]USERS COMMENTS BOOKS"; SQL statement:
+SELECT * FROM BOOKS COMMENTS USERS COMMENTS BOOKS [42000-224]
+2026-10-21 23:44:40.540419+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT * FROM BOOKS \000d\000a[*]SELECT * FROM COMMENTS"
+Syntax error in SQL statement "SELECT * FROM BOOKS \000d\000a[*]SELECT * FROM COMMENTS"; SQL statement:
+SELECT * FROM BOOKS 
+SELECT * FROM COMMENTS [42000-224]
+2026-10-21 23:45:06.277388+03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FLYWAY_SCHEMA_HISTORY" not found (candidates are: "flyway_schema_history"); SQL statement:
+SELECT * FROM flyway_schema_history [42103-224]

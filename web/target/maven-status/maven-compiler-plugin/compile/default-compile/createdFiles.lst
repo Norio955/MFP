@@ -1,2 +1,10 @@
+sumdu\edu\ua\web\UserController.class
+sumdu\edu\ua\web\EmailFreemarkerConfig.class
+sumdu\edu\ua\web\EmailTemplateProcessor.class
+sumdu\edu\ua\web\WebConfig.class
+sumdu\edu\ua\web\LanguageConfig.class
 sumdu\edu\ua\web\AppInit.class
+sumdu\edu\ua\web\CommentsController.class
 sumdu\edu\ua\web\CommentRequest.class
+sumdu\edu\ua\web\MailService.class
+sumdu\edu\ua\web\BooksController.class

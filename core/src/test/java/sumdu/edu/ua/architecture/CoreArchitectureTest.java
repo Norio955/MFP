@@ -18,7 +18,7 @@ public class CoreArchitectureTest {
         noClasses()
                 .that().resideInAPackage("..core..")
                 .should().dependOnClassesThat()
-                .resideInAnyPackage("..web..", "..persistence..")
+                .resideInAnyPackage("sumdu.edu.ua.web..", "sumdu.edu.ua.persistence..")
                 .check(imported);
     }
 

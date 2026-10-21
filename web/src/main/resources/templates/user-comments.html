@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="uk" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Коментарі користувача</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f9f9f9; }
+        .container { background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .comment-box { border-left: 4px solid #007bff; padding: 10px 15px; margin-bottom: 20px; background-color: #f1f8ff; }
+        .date { color: #666; font-size: 0.9em; margin-bottom: 5px; }
+        .text { font-size: 1.1em; margin-bottom: 10px; }
+        .book-link { font-weight: bold; color: #007bff; text-decoration: none; }
+        hr { border: 0; border-top: 1px solid #eee; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="'Коментарі користувача: ' + ${username}">Коментарі користувача: </h1>
+    <hr>
+
+    <ul>
+        <li th:each="c : ${comments}" style="list-style-type: none;">
+            <div class="comment-box">
+                <!-- Завдяки ORM та FetchType.LAZY ми можемо звертатися до c.book.title -->
+                <p class="date" th:text="${c.createdAt}">Дата</p>
+                <p class="text" th:text="${c.text}">Текст коментаря</p>
+                <p>До книги: <a class="book-link" th:href="@{/comments(bookId=${c.book.id})}" th:text="${c.book.title}">Назва книги</a></p>
+            </div>
+        </li>
+    </ul>
+
+    <br>
+    <a href="/books" style="color: #007bff; text-decoration: none;">&larr; Повернутися до каталогу</a>
+</div>
+</body>
+</html>
