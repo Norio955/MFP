@@ -1,10 +1,17 @@
 sumdu\edu\ua\web\UserController.class
+sumdu\edu\ua\web\security\SecurityConfig.class
 sumdu\edu\ua\web\EmailFreemarkerConfig.class
+sumdu\edu\ua\web\config\CoreConfig.class
 sumdu\edu\ua\web\EmailTemplateProcessor.class
 sumdu\edu\ua\web\WebConfig.class
 sumdu\edu\ua\web\LanguageConfig.class
+sumdu\edu\ua\web\controller\GlobalControllerAdvice.class
+sumdu\edu\ua\web\security\AppUserDetailsService.class
+sumdu\edu\ua\web\adapter\SmtpMailAdapter.class
+sumdu\edu\ua\web\controller\AuthController.class
 sumdu\edu\ua\web\AppInit.class
 sumdu\edu\ua\web\CommentsController.class
 sumdu\edu\ua\web\CommentRequest.class
 sumdu\edu\ua\web\MailService.class
+sumdu\edu\ua\web\dto\RegisterUserDto.class
 sumdu\edu\ua\web\BooksController.class

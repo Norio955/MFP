@@ -1,4 +1,6 @@
 F:\SumDU\MPF_Labs-main\persistence\src\main\java\sumdu\edu\ua\persistence\adapter\JpaCommentAdapter.java
+F:\SumDU\MPF_Labs-main\persistence\src\main\java\sumdu\edu\ua\persistence\adapter\JpaCatalogAdapter.java
+F:\SumDU\MPF_Labs-main\persistence\src\main\java\sumdu\edu\ua\persistence\adapter\JpaUserAdapter.java
 F:\SumDU\MPF_Labs-main\persistence\src\main\java\sumdu\edu\ua\persistence\repo\UserJpaRepository.java
 F:\SumDU\MPF_Labs-main\persistence\src\main\java\sumdu\edu\ua\persistence\repo\CommentJpaRepository.java
 F:\SumDU\MPF_Labs-main\persistence\src\main\java\sumdu\edu\ua\persistence\repo\BookJpaRepository.java

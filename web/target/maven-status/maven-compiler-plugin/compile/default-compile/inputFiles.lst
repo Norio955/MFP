@@ -1,10 +1,17 @@
+F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\adapter\SmtpMailAdapter.java
 F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\AppInit.java
 F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\BooksController.java
 F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\CommentRequest.java
 F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\CommentsController.java
+F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\config\CoreConfig.java
+F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\controller\AuthController.java
+F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\controller\GlobalControllerAdvice.java
+F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\dto\RegisterUserDto.java
 F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\EmailFreemarkerConfig.java
 F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\EmailTemplateProcessor.java
 F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\LanguageConfig.java
 F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\MailService.java
+F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\security\AppUserDetailsService.java
+F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\security\SecurityConfig.java
 F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\UserController.java
 F:\SumDU\MPF_Labs-main\web\src\main\java\sumdu\edu\ua\web\WebConfig.java

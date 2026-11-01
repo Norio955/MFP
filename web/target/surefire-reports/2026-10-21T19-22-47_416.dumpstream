@@ -1,5 +1,0 @@
-# Created at 2026-10-21T19:23:04.562
-Boot Manifest-JAR contains absolute paths in classpath 'F:\SumDU\MPF_Labs-main\web\target\test-classes'
-Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
-'other' has different root
-

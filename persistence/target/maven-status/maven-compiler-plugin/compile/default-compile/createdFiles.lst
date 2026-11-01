@@ -1,4 +1,6 @@
 sumdu\edu\ua\persistence\repo\BookJpaRepository.class
 sumdu\edu\ua\persistence\repo\CommentJpaRepository.class
 sumdu\edu\ua\persistence\repo\UserJpaRepository.class
+sumdu\edu\ua\persistence\adapter\JpaCatalogAdapter.class
+sumdu\edu\ua\persistence\adapter\JpaUserAdapter.class
 sumdu\edu\ua\persistence\adapter\JpaCommentAdapter.class

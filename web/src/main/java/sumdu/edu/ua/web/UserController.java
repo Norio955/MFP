@@ -26,7 +26,12 @@ public class UserController {
         User user = userPort.findById(id).orElseThrow(() -> new RuntimeException("Користувача не знайдено"));
         var comments = commentPort.findByUserId(id);
 
-        model.addAttribute("username", user.getUsername());
+        // Використовуємо nickname, а якщо він відсутній — email
+        String displayName = (user.getNickname() != null && !user.getNickname().isBlank())
+                ? user.getNickname()
+                : user.getEmail();
+
+        model.addAttribute("username", displayName);
         model.addAttribute("comments", comments);
 
         return "user-comments";

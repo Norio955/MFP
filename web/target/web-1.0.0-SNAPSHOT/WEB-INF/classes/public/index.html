@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8">
+    <title>Каталог книг</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f9f9f9; }
+        h1, h3 { color: #333; }
+        ul { list-style-type: none; padding: 0; }
+        li { background: white; margin-bottom: 10px; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        form { background: white; padding: 20px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); max-width: 400px; margin-top: 20px; }
+        input, button { display: block; width: 100%; margin-bottom: 10px; padding: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        button { background-color: #007bff; color: white; border: none; cursor: pointer; font-weight: bold; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+
+<h1>Каталог книг (Javalin REST API)</h1>
+<ul id="book-list">Завантаження книг...</ul>
+
+<h3>Додати коментар</h3>
+<form id="comment-form">
+    <input type="number" id="bookId" placeholder="ID книги (наприклад, 1)" required>
+    <input type="text" id="author" placeholder="Ваше ім'я" required>
+    <input type="text" id="text" placeholder="Текст коментаря" required>
+    <button type="submit">Надіслати коментар</button>
+</form>
+
+<script>
+    async function loadBooks() {
+        try {
+            const response = await fetch("/api/books");
+            const data = await response.json();
+
+            const books = data.items ?? data;
+            const list = document.getElementById("book-list");
+            list.innerHTML = "";
+
+            if (books.length === 0) {
+                list.innerHTML = "<li>Книг не знайдено</li>";
+                return;
+            }
+
+            for (const book of books) {
+                const item = document.createElement("li");
+                item.textContent = `${book.id ? 'ID: ' + book.id + ' — ' : ''}${book.title} — ${book.author} (${book.pubYear ?? ''} р.)`;
+                list.appendChild(item);
+            }
+        } catch (error) {
+            console.error("Помилка завантаження:", error);
+            document.getElementById("book-list").innerHTML = "<li>Помилка завантаження даних</li>";
+        }
+    }
+
+    document.getElementById("comment-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const commentData = {
+            bookId: Number(document.getElementById("bookId").value),
+            author: document.getElementById("author").value,
+            text: document.getElementById("text").value
+        };
+
+        try {
+            const response = await fetch("/api/comments", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(commentData)
+            });
+
+            if (response.ok) {
+                console.log("POST успішний, статус:", response.status);
+                alert("Коментар успішно додано! Статус: " + response.status);
+                document.getElementById("comment-form").reset();
+            } else {
+                alert("Помилка при додаванні коментаря!");
+            }
+        } catch (err) {
+            console.error("Мережева помилка:", err);
+            alert("Не вдалося підключитися до сервера!");
+        }
+    });
+
+    loadBooks();
+</script>
+
+</body>
+</html>

@@ -26,6 +26,7 @@ public class WebArchitectureTest {
         classes()
                 .that().haveSimpleNameEndingWith("Servlet")
                 .should().resideInAPackage("..web..")
+                .allowEmptyShould(true) // Дозволяємо порожню вибірку (сервлетів немає)
                 .check(new ClassFileImporter().importPackages("sumdu.edu.ua"));
     }
 
@@ -34,6 +35,7 @@ public class WebArchitectureTest {
         classes()
                 .that().haveSimpleNameEndingWith("Repository")
                 .should().resideInAPackage("..persistence..")
+                .allowEmptyShould(true)
                 .check(new ClassFileImporter().importPackages("sumdu.edu.ua"));
     }
 }

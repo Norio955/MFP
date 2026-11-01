@@ -3,6 +3,9 @@ sumdu\edu\ua\core\port\CatalogRepositoryPort.class
 sumdu\edu\ua\core\port\CommentRepositoryPort.class
 sumdu\edu\ua\core\domain\Page.class
 sumdu\edu\ua\core\domain\PageRequest.class
+sumdu\edu\ua\core\port\UserRepositoryPort.class
 sumdu\edu\ua\core\domain\Comment.class
 sumdu\edu\ua\core\service\CommentService.class
 sumdu\edu\ua\core\domain\User.class
+sumdu\edu\ua\core\port\MailPort.class
+sumdu\edu\ua\core\service\UserService.class

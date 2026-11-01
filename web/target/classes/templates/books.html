@@ -1,25 +1,59 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/header :: header}"></head>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог книг</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        .header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .user-info { font-size: 14px; }
+        .btn-logout { background: none; border: none; color: #007bff; text-decoration: underline; cursor: pointer; padding: 0; font: inherit; }
+        .nav-links { margin-bottom: 15px; }
+    </style>
+</head>
 <body>
 
-<h1 th:text="#{title.books}">Каталог книг</h1>
+<div class="header-bar">
+    <div class="nav-links">
+        <a th:href="@{/books}">Books</a> |
+        <a th:href="@{${uri}(lang='uk')}">UA</a> |
+        <a th:href="@{${uri}(lang='en')}">EN</a> |
+        <a th:href="@{${uri}(lang='fr')}">FR</a>
+    </div>
 
-<p th:if="${#lists.isEmpty(books)}" th:text="#{label.noBooks}">Ще немає книг.</p>
+    <!-- Блок авторизованого користувача: виводимо нікнейм та кнопку Вийти -->
+    <div class="user-info" sec:authorize="isAuthenticated()">
+        Вітаємо, <b th:text="${currentUserNickname}">Користувач</b>!
+        <form th:action="@{/logout}" method="post" style="display:inline; margin-left: 10px;">
+            <button type="submit" class="btn-logout">Вийти</button>
+        </form>
+    </div>
 
-<ul th:if="${!#lists.isEmpty(books)}">
+    <!-- Якщо користувач не залогінений -->
+    <div class="user-info" sec:authorize="isAnonymous()">
+        <a th:href="@{/login}">Увійти</a> | <a th:href="@{/register}">Реєстрація</a>
+    </div>
+</div>
+
+<hr/>
+
+<h1>Каталог книг</h1>
+
+<ul>
     <li th:each="book : ${books}">
-        <a th:href="@{/comments(bookId=${book.id})}">
-            <span th:text="${book.title}"></span> —
-            <span th:text="${book.author}"></span>
-            (<span th:text="${book.pubYear}"></span>)
-        </a>
+        <a th:href="@{/books/{id}(id=${book.id})}" th:text="${book.title}">Книга</a> —
+        <span th:text="${book.author}">Автор</span>
+        (<span th:text="${book.pubYear}">2026</span>)
     </li>
 </ul>
 
-<p>
-    <a th:href="@{/books/new}" th:text="#{label.addBook}">Додати книгу</a>
-</p>
+<!-- Посилання Додати книгу показується ТІЛЬКИ АДМІНІСТРАТОРУ -->
+<div sec:authorize="hasRole('ADMIN')">
+    <br/>
+    <a th:href="@{/books/new}">Додати книгу</a>
+</div>
 
 </body>
 </html>
+
